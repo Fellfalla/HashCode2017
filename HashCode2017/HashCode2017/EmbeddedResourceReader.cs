@@ -16,7 +16,7 @@ namespace HashCode2017
         /// <param name="resource">"MyCompany.MyProduct.MyFile.txt"</param>
         /// <param name="assembly"></param>
         /// <returns></returns>
-        public static string[] ReadStrings(string resource, Assembly assembly = null)
+        public static IEnumerable<string> ReadStrings(string resource, Assembly assembly = null)
         {
             if (assembly == null)
             {
@@ -26,8 +26,12 @@ namespace HashCode2017
             using (Stream stream = assembly.GetManifestResourceStream(resource))
             using (StreamReader reader = new StreamReader(stream))
             {
-                string result = reader.ReadToEnd();
-                return result.Split(new [] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    yield return line;
+                }
+
             }
         }
     }

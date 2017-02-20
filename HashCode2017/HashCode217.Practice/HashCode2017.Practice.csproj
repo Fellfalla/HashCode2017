@@ -54,6 +54,7 @@
     <EmbeddedResource Include="Resources\example.in" />
     <EmbeddedResource Include="Resources\medium.in" />
     <None Include="Resources\pizza.pdf" />
+    <EmbeddedResource Include="Resources\small.in" />
     <None Include="small.in" />
   </ItemGroup>
   <ItemGroup>
