@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HashCode2017
+namespace HashCode2017.Practice
 {
     public class Slice
     {

@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HashCode217.Practice\HashCode217.Practice.csproj">
+    <ProjectReference Include="..\HashCode217.Practice\HashCode2017.Practice.csproj">
       <Project>{523FE333-7992-4668-9943-1DF4B267C06D}</Project>
-      <Name>HashCode217.Practice</Name>
+      <Name>HashCode2017.Practice</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

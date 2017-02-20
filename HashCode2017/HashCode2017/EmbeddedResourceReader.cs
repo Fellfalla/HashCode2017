@@ -8,14 +8,22 @@ using System.Threading.Tasks;
 
 namespace HashCode2017
 {
-    public class EmbeddedResourceReader
+    public static class EmbeddedResourceReader
     {
-        public string[] ReadStrings(string resource)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="resource">"MyCompany.MyProduct.MyFile.txt"</param>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public static string[] ReadStrings(string resource, Assembly assembly = null)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "MyCompany.MyProduct.MyFile.txt";
+            if (assembly == null)
+            {
+                assembly = Assembly.GetCallingAssembly();
+            }
 
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (Stream stream = assembly.GetManifestResourceStream(resource))
             using (StreamReader reader = new StreamReader(stream))
             {
                 string result = reader.ReadToEnd();

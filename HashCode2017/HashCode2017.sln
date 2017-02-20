@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode217.Practice", "HashCode217.Practice\HashCode217.Practice.csproj", "{523FE333-7992-4668-9943-1DF4B267C06D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode2017.Practice", "HashCode217.Practice\HashCode2017.Practice.csproj", "{523FE333-7992-4668-9943-1DF4B267C06D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode2017.Practice.Tests", "HashCode2017.Practice.Tests\HashCode2017.Practice.Tests.csproj", "{D3B16964-DCF7-482E-980C-A16BED70926F}"
 EndProject
