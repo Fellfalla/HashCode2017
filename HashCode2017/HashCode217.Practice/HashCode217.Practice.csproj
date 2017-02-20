@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pizza.cs" />
+    <Compile Include="PizzaDataReader.cs" />
     <Compile Include="PizzaSlicer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\big.in" />
-    <None Include="Resources\example.in" />
-    <None Include="Resources\medium.in" />
+    <EmbeddedResource Include="Resources\big.in" />
+    <EmbeddedResource Include="Resources\example.in" />
+    <EmbeddedResource Include="Resources\medium.in" />
     <None Include="Resources\pizza.pdf" />
     <None Include="small.in" />
   </ItemGroup>
