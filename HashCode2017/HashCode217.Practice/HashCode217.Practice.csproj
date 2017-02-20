@@ -44,6 +44,13 @@
     <Compile Include="PizzaSlicer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\big.in" />
+    <None Include="Resources\example.in" />
+    <None Include="Resources\medium.in" />
+    <None Include="Resources\pizza.pdf" />
+    <None Include="small.in" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
