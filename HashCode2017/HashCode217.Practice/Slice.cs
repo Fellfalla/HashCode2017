@@ -4,91 +4,24 @@ using System.Text.RegularExpressions;
 
 namespace HashCode2017.Practice
 {
-
-    public class SlicePattern
-    {
-        public SlicePattern()
-        {
-            
-        }
-
-        public SlicePattern(int right, int down)
-        {
-            Right = right;
-            Down = down;
-        }
-
-        public int Right;
-        public int Down;
-
-        public int CellCount()
-        {
-            return (Right + 1)* (Down + 1);
-        }
-
-        public static IEnumerable<SlicePattern> GetAllPossible(Pizza pizza)
-        {
-            return GetAllPossible(pizza.MinIngredientsPerSlice, pizza.MaxCellsPerSlice);
-        }
-
-        public static IEnumerable<SlicePattern> GetAllPossible(int minCells, int maxCells)
-        {
-            for (int rows = 0; rows <= maxCells; rows++)
-            {
-                for (int columns = 0; columns <= maxCells; columns++)
-                {
-                    var pattern = new SlicePattern();
-                    pattern.Right = columns;
-                    pattern.Down = rows;
-
-                    var cellCount = pattern.CellCount();
-                    if (minCells <= cellCount  && cellCount <= maxCells)
-                    {
-                        yield return pattern;
-                        //if (pattern.Right != pattern.Down)
-                        //{
-                        //    // Create flipped pattern
-                        //    var flippedPattern = new SlicePattern();
-                        //    flippedPattern.Down = pattern.Right;
-                        //    flippedPattern.Right = pattern.Down;
-                        //    yield return flippedPattern;
-                        //}
-                    }
-                }
-            }
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is SlicePattern)
-            {
-                return Equals((SlicePattern) obj);
-            }
-
-            return base.Equals(obj);
-        }
-
-        protected bool Equals(SlicePattern other)
-        {
-            return Right == other.Right && Down == other.Down;
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (Right*397) ^ Down;
-            }
-        }
-
-        public override string ToString()
-        {
-            return Right + " " + Down;
-        }
-    }
-
     public class Slice
     {
+        public Slice(Pizza pizza, Field field, SlicePattern pattern) :
+            this(field.Row, field.Column, pattern)
+        {
+            Pizza = pizza;
+            foreach (var field1 in GetFields())
+            {
+                AffectedFields.Add(field1);
+            }
+        }
+
+
+
+        public readonly Pizza Pizza;
+        public bool IsOnPizza = true;
+        public readonly List<Field> AffectedFields = new List<Field>(); 
+
         public Slice(int row, int column, SlicePattern pattern) : 
             this(row, column, row+pattern.Down, column+pattern.Right)
         {
@@ -136,6 +69,21 @@ namespace HashCode2017.Practice
             return false;
         }
 
+        public IEnumerable<Field> GetFields()
+        {
+            foreach (var point in GetPoints())
+            {
+                if (Pizza.IsIndexOnPizza(point.Item1, point.Item2))
+                {
+                    yield return Pizza.GetField(point.Item1, point.Item2);
+                }
+                else
+                {
+                    IsOnPizza = false;
+                }
+            }
+        } 
+
         public IEnumerable<Tuple<int, int>> GetPoints()
         {
             for (int i = Row1; i <= Row2; i++)
@@ -162,6 +110,11 @@ namespace HashCode2017.Practice
 
             // Exceeds pizza
             if (Row2 >= pizza.Rows || Column2 >= pizza.Columns)
+            {
+                return false;
+            }
+
+            if (!IsOnPizza)
             {
                 return false;
             }

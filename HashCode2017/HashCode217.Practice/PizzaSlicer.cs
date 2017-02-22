@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HashCode2017.Practice
@@ -89,6 +91,78 @@ namespace HashCode2017.Practice
             }
 
             return slices;
+        }
+
+        public static IEnumerable<Slice> SliceWithAnalysis(Pizza pizza, IProgress<float> progress)
+        {
+            progress?.Report(0);
+
+            // Analyse
+            var fieldsToAssign = pizza.Fields.ToList();
+
+            // sort all Possible Slices
+            foreach (var field in fieldsToAssign)
+            {
+                field.PossibleSlices.Sort(new BiggestSliceSorter());
+            }
+            // clean and sort fields 
+            fieldsToAssign.RemoveAll(field => field.PossibleSlices.Count < 1);
+            fieldsToAssign.Sort(new FieldPossibilityComparison());
+
+
+            int initialCount = fieldsToAssign.Count;
+
+            while (fieldsToAssign.Count > 0)
+            {
+                var choosenSlice = fieldsToAssign.First().PossibleSlices.First();
+
+                // remove possibilities from cutted fields
+                foreach (var field in choosenSlice.AffectedFields)
+                {
+                    foreach (var foreclosedSlice in field.PossibleSlices.ToArray())
+                    {
+                        // Remove all destroyed possibilities
+                        foreach (var neighbouredField in foreclosedSlice.AffectedFields)
+                        {
+                            neighbouredField.PossibleSlices.Remove(foreclosedSlice);
+                        }
+                    }
+
+                    // remove from fields to assign
+                    fieldsToAssign.Remove(field);
+                    field.PossibleSlices.Clear();
+                }
+
+                yield return choosenSlice;
+                progress?.Report( (initialCount-fieldsToAssign.Count) / (float)initialCount);
+
+                // Remove all unmanageableFields
+                fieldsToAssign.RemoveAll(field => field.PossibleSlices.Count < 1);
+
+                // refresh sorting
+                fieldsToAssign.Sort(new FieldPossibilityComparison());
+            }
+
+            progress?.Report(1);
+        }
+
+        public class BiggestSliceSorter : IComparer<Slice>
+        {
+            public int Compare(Slice x, Slice y)
+            {
+                var sizeX = x.Cells();
+                var sizeY = y.Cells();
+
+                return sizeX - sizeY;
+            }
+        }
+
+        public class FieldPossibilityComparison : IComparer<Field>
+        {
+            public int Compare(Field x, Field y)
+            {
+                return x.PossibleSlices.Count - y.PossibleSlices.Count;
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="PizzaSlicer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Slice.cs" />
+    <Compile Include="SlicePattern.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\big.in" />
