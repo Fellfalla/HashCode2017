@@ -9,6 +9,7 @@ namespace HashCode2017.Qualification.Classes
     public class GreedyAssign
     {
 
+
         public struct Item
         {
             public Video Video;
