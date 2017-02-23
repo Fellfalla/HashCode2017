@@ -14,7 +14,7 @@ namespace HashCode2017.Qualification.Classes
 
             foreach(RequestDescription r in v.RequestsForThisVideo)
             {
-                result += r.RequestAmount * (r.Endpoint.LatencyToDataCenter-r.Endpoint.getLatencyToCache(c));
+                result += r.RequestAmount * (r.Endpoint.LatencyToDataCenter-r.Endpoint.GetLatencyToCache(c));
             }
 
             return result;
