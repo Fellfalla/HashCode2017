@@ -78,17 +78,18 @@ namespace HashCode2017.Qualification
 
         private static void CalculateVideoRequests(Video[] videos, RequestDescription[] requestsDescriptions)
         {
-            foreach (Video video in videos)
+            for (int i = 0; i < videos.Length; i++)
             {
-                foreach (RequestDescription request in requestsDescriptions)
+                Video video = videos[i];
+                for (int index = 0; index < requestsDescriptions.Length; index++)
                 {
+                    RequestDescription request = requestsDescriptions[index];
                     if (request.Video.Id == video.Id)
                     {
                         video.RequestsForThisVideo.Add(request);
                     }
                 }
-
-            }   
+            }
         }
 
         private static string[] GetOutput(CacheServer[] cacheServers)
