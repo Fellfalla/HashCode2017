@@ -43,15 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Endpoint.cs" />
+    <Compile Include="Classes\Video.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EmbeddedResource Include="Resources\kittens.in" />
-    <EmbeddedResource Include="Resources\me_at_the_zoo.in" />
-    <EmbeddedResource Include="Resources\trending_today.in" />
-    <EmbeddedResource Include="Resources\videos_worth_spreading.in" />
     <None Include="hashcode2017_streaming_videos.pdf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
