@@ -103,7 +103,38 @@ namespace HashCode2017.Qualification
                 File.WriteAllLines(file, output);
         }
 
+        public static void NaiveEvaluate(Video[] videos, CacheServer[] servers, RequestDescription[] requests)
+        {
 
+            int curVideo = 0;
+
+            for (int i = 0; i < servers.Length; i++)
+            {
+                while (servers[i].PercentUsed < 1)
+                {
+                    if (curVideo >= videos.Length)
+                    {
+                        return;
+                    }
+
+                    else
+                    {
+                        var addedVideo = videos[curVideo++];
+                        servers[i].TempVideos.Add(addedVideo);
+
+                        servers[i].CalculatePercentUsed();
+
+                        if (servers[i].PercentUsed > 1)
+                        {
+                            servers[i].TempVideos.Remove(addedVideo);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        
         private static void ProgressHandler(float f)
         {
             Console.Write("\rProgress: {0} %\t\t", f * 100);
