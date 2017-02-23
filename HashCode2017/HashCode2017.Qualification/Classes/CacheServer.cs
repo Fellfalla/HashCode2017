@@ -10,10 +10,12 @@ namespace HashCode2017.Qualification.Classes
     {
         private List<Video> _videos;
 
-        public CacheServer(List<Video> videos)
+        public CacheServer(int id)
         {
-            _videos = videos;
+            _videos = new List<Video>();
         }
+
+        public int Id { get;set; }
 
         public List<Video> Videos
         {
