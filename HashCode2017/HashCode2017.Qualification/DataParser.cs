@@ -28,7 +28,10 @@ namespace HashCode2017.Practice
         }
 
 
-        public static void ParseFileLines(string[] fileLines, out List<Video> videos)
+        public static void ParseFileLines(string[] fileLines, 
+            out List<Video> videos,
+            out List<Endpoint> endpoint
+            )
         {
             int currentLine = 0;
             int[] specs = fileLines[currentLine].Split(' ').Select(int.Parse).ToArray();
@@ -42,12 +45,30 @@ namespace HashCode2017.Practice
 
             // Parse Videos
             videos = new List<Video>();
+            int[] videoSizes = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+            if (videoSizes.Length != videoCount)
+                {
+                    throw new Exception("Video Count mismatch");
+                }
 
-            for (int i = 0; i < UPPER; i++)
+            for (int i = 0; i < videoSizes.Length; i++)
             {
-                
+                var newVideo = new Video(videoSizes[i], i);
+                videos.Add(newVideo);
             }
 
+
+            // ParseEndpoints
+            for (int i = 0; i < endpointCount; i++)
+            {
+                int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+                int latency = endpointSpecs[0];
+                int cacheserverCount = endpointSpecs[1];
+
+
+
+                var newEndpoint = new Endpoint(latency);
+            }
         }
 
 
