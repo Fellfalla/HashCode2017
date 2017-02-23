@@ -27,8 +27,9 @@ namespace HashCode2017.Qualification
             List<Video> videos;
             List<Endpoint> endpoints;
             List<CacheServer> cacheServers;
+            List<RequestDescription> requestsDescriptions;
             
-            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers);
+            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
 
             //calculate Heuristik
 
