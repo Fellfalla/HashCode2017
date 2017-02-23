@@ -10,7 +10,7 @@ namespace HashCode2017.Qualification.Classes
     {
 
 
-        public static void GenerateHeuristicSteps(Video[] videos, CacheServer[] cacheServers )
+        public static void GenerateHeuristicSteps(Video[] videos, CacheServer[] cacheServers, IProgress<float> progress)
         {
 
             //calculate Heuristik
@@ -22,6 +22,7 @@ namespace HashCode2017.Qualification.Classes
 
             for (int iVideo = 0; iVideo < videos.Length; iVideo++)
             {
+                progress.Report(iVideo/(float) videos.Length);
                 for (int iServer = 0; iServer < cacheServers.Length; iServer++)
                 {
                     double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);

@@ -59,13 +59,13 @@ namespace HashCode2017.Qualification
 
             //calculate Heuristik
 
-            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
+            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers, progress);
             
             //start greedy assigning
 
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)
 
-            GreedyAssign.GenerateHeuristicCosts(videos, cacheServers);
+            GreedyAssign.GenerateHeuristicCosts(videos, cacheServers, progress);
             //2 while still space on any cache server: find biggest entry in M and assign V to C --> then set enty to 0. As soon as any cacheserver is full: delete column in M
 
             Assigner.Assign();

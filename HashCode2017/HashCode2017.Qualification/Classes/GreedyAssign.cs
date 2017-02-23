@@ -17,12 +17,13 @@ namespace HashCode2017.Qualification.Classes
             public float HeuristicCosts;
         }
 
-        public static void GenerateHeuristicCosts(Video[] videos, CacheServer[] cacheServers)
+        public static void GenerateHeuristicCosts(Video[] videos, CacheServer[] cacheServers, IProgress<float> progress)
         {
             float value;
-
+            int counter = 0;
             foreach (var video in videos)
             {
+                progress.Report(counter++/(float) videos.Length);
                 foreach (var cacheServer in cacheServers)
                 {
                     //listItem = CalculateHeuristicForOneItem(video, cacheServer);
