@@ -42,10 +42,10 @@ namespace HashCode2017.Qualification
 
         public static void EvaluateData(DataParser.ProblemSettings mode)
         {
-            List<Video> videos;
-            List<Endpoint> endpoints;
-            List<CacheServer> cacheServers;
-            List<RequestDescription> requestsDescriptions;
+            Video[] videos;
+            Endpoint[] endpoints;
+            CacheServer[] cacheServers;
+            RequestDescription[] requestsDescriptions;
             
             var progress = new Progress<float>(ProgressHandler);
 
@@ -54,7 +54,7 @@ namespace HashCode2017.Qualification
 
             //calculate Heuristik
 
-            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
+            //GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
             
             //start greedy assigning
 
