@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +54,12 @@
     <EmbeddedResource Include="Resources\trending_today.in" />
     <EmbeddedResource Include="Resources\videos_worth_spreading.in" />
     <None Include="hashcode2017_streaming_videos.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HashCode2017\HashCode2017.csproj">
+      <Project>{6FA2937C-CC44-4248-A9CD-6AC535CAE791}</Project>
+      <Name>HashCode2017</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
