@@ -11,6 +11,8 @@ namespace HashCode2017.Qualification.Classes
         private int _size;
         private int _id;
 
+        public List<RequestDescription> RequestsForThisVideo = new List<RequestDescription>();
+
         //constructor
         public Video(int size, int id)
         {
