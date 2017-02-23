@@ -21,4 +21,3 @@ namespace HashCode2017.Qualification.Classes
         }
     }
 }
-+
