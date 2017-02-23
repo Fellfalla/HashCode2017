@@ -60,7 +60,7 @@ namespace HashCode2017.Qualification
             //calculate Heuristik
 
             //GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
-            
+            NaiveEvaluate(videos, cacheServers, requestsDescriptions);
             //start greedy assigning
 
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)

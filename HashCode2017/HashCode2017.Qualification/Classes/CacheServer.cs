@@ -14,7 +14,7 @@ namespace HashCode2017.Qualification.Classes
         //Potential videos that can be stored on this cache
         private List<Video> _tempVideos = new List<Video>();
 
-        private const int MAXSIZE = 500000;
+        public static int MAXSIZE;
 
         public float PercentUsed = 0;
 
