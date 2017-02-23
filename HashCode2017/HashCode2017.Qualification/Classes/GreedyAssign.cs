@@ -8,7 +8,7 @@ namespace HashCode2017.Qualification.Classes
 {
     public class GreedyAssign
     {
-        public List<Item> CostList = new List<Item>();
+
 
         public struct Item
         {
@@ -17,20 +17,40 @@ namespace HashCode2017.Qualification.Classes
             public float HeuristicCosts;
         }
 
-        public void InsertToList(Item item)
+        public static void GenerateHeuristicCosts(List<Video> videos, List<CacheServer> cacheServers)
         {
-            for (int index = 0; index < CostList.Count; index++)
+            float listItem;
+
+            foreach (var video in videos)
             {
-                Item element = CostList[index];
-                if (item.HeuristicCosts < element.HeuristicCosts)
+                foreach (var cacheServer in cacheServers)
                 {
-                    CostList.Insert(index, item);
-                    return;
+                    //listItem = CalculateHeuristicForOneItem(video, cacheServer);
+                    listItem = (float)CostSavings.calculateCostSavingsHeuristic(video, cacheServer);
+                    InsertToList(listItem);
                 }
             }
-
-            CostList.Add(item);
+            
         }
+
+        //public static float CalculateHeuristicForOneItem(Video video, CacheServer cacheServer)
+        //{
+        //    float listItem = 0;
+
+        //    List<RequestDescription> listRequests = video.RequestsForThisVideo;
+
+        //    foreach (var requestDescription in listRequests)
+        //    {
+
+        //        foreach (var endpointCacheConnection in requestDescription.Endpoint.CacheConnections)
+        //        {
+        //            CostSavings.calculateCostSavingsHeuristic(video, endpointCacheConnection.server);
+        //        }
+                
+        //    }
+
+        //    return listItem;
+        //}
 
     }
 }
