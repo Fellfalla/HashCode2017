@@ -61,5 +61,21 @@ namespace HashCode2017.Qualification.Classes
                 _id = value;
             }
         }
+
+        public int GetLatencyToCache(CacheServer cache)
+        {
+            int latency = LatencyToDataCenter;
+
+            foreach(CacheConnection connection in _cacheConnections)
+            {
+                if (connection.server.Id == cache.Id)
+                {
+                    return connection.latency;
+                }
+            }
+
+            return latency;
+
+        }
     }
 }
