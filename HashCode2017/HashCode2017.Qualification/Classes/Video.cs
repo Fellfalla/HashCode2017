@@ -16,5 +16,7 @@ namespace HashCode2017.Qualification.Classes
             _size = size;
             _id = id;
         }
+
+
     }
 }

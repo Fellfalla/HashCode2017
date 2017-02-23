@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using HashCode2017.Qualification.Classes;
 
 namespace HashCode2017.Practice
 {
@@ -25,11 +27,31 @@ namespace HashCode2017.Practice
 
         }
 
-        public static void ParseFileLines(string[] fileLines)
+
+        public static void ParseFileLines(string[] fileLines, out List<Video> videos)
         {
-            
+            int currentLine = 0;
+            int[] specs = fileLines[currentLine].Split(' ').Select(int.Parse).ToArray();
+
+            int videoCount = specs[0];
+            int endpointCount = specs[1];
+            int requestCount = specs[2];
+            int cachServerCount = specs[3];
+            int cachecapacity = specs[4];
+
+
+            // Parse Videos
+            videos = new List<Video>();
+
+            for (int i = 0; i < UPPER; i++)
+            {
+                
+            }
+
         }
 
+
+        
 
         public enum ProblemSettings
         {
