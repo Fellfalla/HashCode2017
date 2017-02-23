@@ -78,22 +78,5 @@ namespace HashCode2017.Qualification
             Console.Write("\rProgress: {0} %\t\t", f * 100);
         }
         
-        public void GreedyServerAssignUnlimitedSpace(List<Video> videos, List<CacheServer> cacheServers)
-        {
-            for (int iVideo = 0; iVideo < videos.Count; iVideo++)
-            {
-                for (int iServer = 0; iServer < cacheServers.Count; iServer++)
-                {
-                    double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);
-
-                    if (temp > 0)
-                    {
-                        cacheServers[iServer].TempVideos.Add(videos[iVideo]);
-                    }
-                    
-                }
-            }
-        }
-
     }
 }
