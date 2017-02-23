@@ -54,7 +54,7 @@ namespace HashCode2017.Qualification
 
             //calculate Heuristik
 
-            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
+            //GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
             
             //start greedy assigning
 
