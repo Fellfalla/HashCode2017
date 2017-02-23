@@ -14,18 +14,18 @@ namespace HashCode2017.Qualification.Classes
 
         private List<CacheConnection> _cacheConnections;
 
-        public Endpoint(int latencyToDataCenter)
+        public Endpoint(int latencyToDataCenter, int id)
         {
             _latencyToDataCenter = latencyToDataCenter;
             _cacheConnections = new List<CacheConnection>();
+            Id = id;
         }
 
-        public void AddCacheConnection(CacheServer server, int latency, int id)
+        public void AddCacheConnection(CacheServer server, int latency)
         {
             var connection = new CacheConnection();
             connection.latency = latency;
             connection.server = server;
-            Id = id;
 
             CacheConnections.Add(connection);
         }
