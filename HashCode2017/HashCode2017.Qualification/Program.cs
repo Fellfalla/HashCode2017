@@ -47,9 +47,14 @@ namespace HashCode2017.Qualification
             List<CacheServer> cacheServers;
             List<RequestDescription> requestsDescriptions;
             
-            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
+            var progress = new Progress<float>(ProgressHandler);
+
+            DataParser.ParseFileLines
+                (DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions, progress);
 
             //calculate Heuristik
+
+            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
 
                 //1 calculate cost savings for all combinations video zu cacheserver
 
@@ -68,23 +73,12 @@ namespace HashCode2017.Qualification
 
 
         }
+
         
-        public void GreedyServerAssignUnlimitedSpace(List<Video> videos, List<CacheServer> cacheServers)
+        private static void ProgressHandler(float f)
         {
-            for (int iVideo = 0; iVideo < videos.Count; iVideo++)
-            {
-                for (int iServer = 0; iServer < cacheServers.Count; iServer++)
-                {
-                    double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);
-
-                    if (temp > 0)
-                    {
-                        cacheServers[iServer].TempVideos.Add(videos[iVideo]);
-                    }
-                    
-                }
-            }
+            Console.Write("\rProgress: {0} %\t\t", f * 100);
         }
-
+        
     }
 }
