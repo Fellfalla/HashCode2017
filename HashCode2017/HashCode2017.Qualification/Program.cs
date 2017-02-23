@@ -10,6 +10,7 @@ namespace HashCode2017.Qualification
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
