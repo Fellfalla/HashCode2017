@@ -24,7 +24,7 @@ namespace HashCode2017.Qualification.Classes
             for (int index = 0; index < videos.Length; index++)
             {
                 var video = videos[index];
-                progress.Report(counter++/(float) videos.Length);
+                //progress.Report(counter++/(float) videos.Length);
                 for (int i = 0; i < cacheServers.Length; i++)
                 {
                     var cacheServer = cacheServers[i];

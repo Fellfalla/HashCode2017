@@ -81,7 +81,8 @@ namespace HashCode2017.Qualification
             for (int i = 0; i < videos.Length; i++)
             {
                 Video video = videos[i];
-                for (int index = 0; index < requestsDescriptions.Length; index++)
+                int count = requestsDescriptions.Length;
+                for (int index = 0; index < count; index++)
                 {
                     RequestDescription request = requestsDescriptions[index];
                     if (request.Video.Id == video.Id)
