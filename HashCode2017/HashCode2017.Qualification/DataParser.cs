@@ -14,13 +14,13 @@ namespace HashCode2017.Practice
             switch (problemSetting)
             {
                     case ProblemSettings.kittens:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.kittens.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.kittens.in", assembly);
                     case ProblemSettings.me_at_the_zoo:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.me_at_the_zoo.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.me_at_the_zoo.in", assembly);
                     case ProblemSettings.trending_today:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.trending_today.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.trending_today.in", assembly);
                     case ProblemSettings.video_worth_spreading:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.video_worth_spreading.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.video_worth_spreading.in", assembly);
                 default:
                     throw new ArgumentException();
             }
@@ -30,8 +30,9 @@ namespace HashCode2017.Practice
 
         public static void ParseFileLines(string[] fileLines, 
             out List<Video> videos,
-            out List<Endpoint> endpoint,
-            out List<CacheServer> cacheServers
+            out List<Endpoint> endpoints,
+            out List<CacheServer> cacheServers,
+            out List<RequestDescription> requests
             )
         {
             int currentLine = 0;
@@ -61,7 +62,7 @@ namespace HashCode2017.Practice
 
             // ParseEndpoints and cache Servers
             cacheServers = new List<CacheServer>();
-            endpoint = new List<Endpoint>();
+            endpoints = new List<Endpoint>();
             for (int i = 0; i < endpointCount; i++)
             {
                 int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
@@ -90,9 +91,25 @@ namespace HashCode2017.Practice
                     newEndpoint.AddCacheConnection(cacheServer, cacheLatency);
                 }
 
-                endpoint.Add(newEndpoint);
+                endpoints.Add(newEndpoint);
+            }
 
 
+            // Parse Requests
+            requests = new List<RequestDescription>();
+            for (int i = 0; i < requestCount; i++)
+            {
+                int[] requestSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+                int videoId = requestSpecs[0];
+                int endpointId = requestSpecs[1];
+                int numberOfRequests = requestSpecs[2];
+
+                // find video
+                Video videoR = videos.First(video => video.Id == videoId);
+                Endpoint endpointR = endpoints.First(endpoint => endpoint.Id == endpointId);
+
+                var newRequest = new RequestDescription(videoR, endpointR, numberOfRequests);
+                requests.Add(newRequest);
             }
         }
 

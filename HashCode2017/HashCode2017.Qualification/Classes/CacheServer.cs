@@ -10,6 +10,8 @@ namespace HashCode2017.Qualification.Classes
     {
         private List<Video> _videos;
 
+        private const int MAXSIZE = 500000;
+
         public CacheServer(int id)
         {
             _videos = new List<Video>();
@@ -21,6 +23,17 @@ namespace HashCode2017.Qualification.Classes
         {
             get { return _videos; }
             set { _videos = value; }
+        }
+
+        public float GetFreeSpacePercent()
+        {
+            int spaceUsed = 0;
+            foreach (Video vid in _videos)
+            {
+                spaceUsed += vid.Size;
+            }
+
+            return (float)spaceUsed/MAXSIZE;
         }
     }
 }

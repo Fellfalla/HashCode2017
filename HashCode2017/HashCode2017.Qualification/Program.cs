@@ -26,8 +26,10 @@ namespace HashCode2017.Qualification
 
             List<Video> videos;
             List<Endpoint> endpoints;
+            List<CacheServer> cacheServers;
+            List<RequestDescription> requestsDescriptions;
             
-            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input), out videos, out endpoints);
+            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
 
             //calculate Heuristik
 
@@ -36,6 +38,7 @@ namespace HashCode2017.Qualification
                 //2 assign videos to optimal cache server  for every endpoint with full size and with reduced size(10%!?) to all other possible cache servers connected to this endpoint and ignore cahe server size for this step
 
                 //3 calculate used_space/avilable_space for every chache server
+                
 
             //start greedy assigning
 
