@@ -14,13 +14,13 @@ namespace HashCode2017.Practice
             switch (problemSetting)
             {
                     case ProblemSettings.kittens:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.kittens.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.kittens.in", assembly);
                     case ProblemSettings.me_at_the_zoo:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.me_at_the_zoo.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.me_at_the_zoo.in", assembly);
                     case ProblemSettings.trending_today:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.trending_today.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.trending_today.in", assembly);
                     case ProblemSettings.video_worth_spreading:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Practice.Resources.video_worth_spreading.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.video_worth_spreading.in", assembly);
                 default:
                     throw new ArgumentException();
             }
