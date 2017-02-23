@@ -42,10 +42,10 @@ namespace HashCode2017.Qualification
 
         public static void EvaluateData(DataParser.ProblemSettings mode)
         {
-            List<Video> videos;
-            List<Endpoint> endpoints;
-            List<CacheServer> cacheServers;
-            List<RequestDescription> requestsDescriptions;
+            Video[] videos;
+            Endpoint[] endpoints;
+            CacheServer[] cacheServers;
+            RequestDescription[] requestsDescriptions;
             
             var progress = new Progress<float>(ProgressHandler);
 

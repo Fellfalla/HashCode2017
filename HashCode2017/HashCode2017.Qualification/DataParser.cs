@@ -29,16 +29,21 @@ namespace HashCode2017.Practice
 
 
         public static void ParseFileLines(string[] fileLines, 
-            out List<Video> videos,
-            out List<Endpoint> endpoints,
-            out List<CacheServer> cacheServers,
-            out List<RequestDescription> requests,
+            out Video[] videos,
+            out Endpoint[] endpoints,
+            out CacheServer[] cacheServers,
+            out RequestDescription[] requests,
             IProgress<float> progress 
             )
         {
             progress.Report(0);
+
+            int totalLines = fileLines.Length;
             int currentLine = 0;
+
             int[] specs = fileLines[currentLine].Split(' ').Select(int.Parse).ToArray();
+
+            progress.Report(currentLine/(float)totalLines);
 
             int videoCount = specs[0];
             int endpointCount = specs[1];
@@ -46,9 +51,20 @@ namespace HashCode2017.Practice
             int cachServerCount = specs[3];
             int cachecapacity = specs[4];
 
+            // init Arrays
+            cacheServers = new CacheServer[cachecapacity];
+            videos = new Video[videoCount];
+            endpoints = new Endpoint[endpointCount];
+            requests = new RequestDescription[requestCount];
+            for (int i = 0; i < cachServerCount; i++)
+            {
+                cacheServers[i] = new CacheServer(i);
+            }
+
+            
+
 
             // Parse Videos
-            videos = new List<Video>();
             int[] videoSizes = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
             if (videoSizes.Length != videoCount)
                 {
@@ -58,15 +74,14 @@ namespace HashCode2017.Practice
             for (int i = 0; i < videoSizes.Length; i++)
             {
                 var newVideo = new Video(videoSizes[i], i);
-                videos.Add(newVideo);
+                videos[i] = newVideo;
             }
 
 
-            // ParseEndpoints and cache Servers
-            cacheServers = new List<CacheServer>();
-            endpoints = new List<Endpoint>();
+            // ParseEndpoints and cacheData
             for (int i = 0; i < endpointCount; i++)
             {
+                progress.Report(currentLine/(float)totalLines);
                 int endpointId = ++currentLine;
                 int[] endpointSpecs = fileLines[endpointId].Split(' ').Select(int.Parse).ToArray();
                 int endpointLatency = endpointSpecs[0];
@@ -79,40 +94,24 @@ namespace HashCode2017.Practice
                     int cacheId = cacheSpecs[0];
                     int cacheLatency = cacheSpecs[1];
 
-                    CacheServer cacheServer = null;
-                    if (cacheServers.All(server => server.Id != cacheId))
-                    {
-                        // add Missing cacheServer
-                        var newCacheServer = new CacheServer(cacheId);
-                        cacheServers.Add(newCacheServer);
-                    }
-                    else
-                    {
-                        cacheServer = cacheServers.First(server => server.Id == cacheId);
-                    }
-
-                    newEndpoint.AddCacheConnection(cacheServer, cacheLatency);
+                    // Add cache Server Info
+                    newEndpoint.AddCacheConnection(cacheServers[cacheId], cacheLatency);
                 }
 
-                endpoints.Add(newEndpoint);
+                endpoints[i] = newEndpoint;
             }
 
-
             // Parse Requests
-            requests = new List<RequestDescription>();
             for (int i = 0; i < requestCount; i++)
             {
+                progress.Report(currentLine/(float)totalLines);
                 int[] requestSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
                 int videoId = requestSpecs[0];
                 int endpointId = requestSpecs[1];
                 int numberOfRequests = requestSpecs[2];
 
-                // find video
-                Video videoR = videos.First(video => video.Id == videoId);
-                Endpoint endpointR = endpoints.First(endpoint => endpoint.Id == endpointId);
-
-                var newRequest = new RequestDescription(videoR, endpointR, numberOfRequests);
-                requests.Add(newRequest);
+                var newRequest = new RequestDescription(videos[videoId], endpoints[endpointId], numberOfRequests);
+                requests[i] = newRequest;
             }
 
             progress.Report(1);

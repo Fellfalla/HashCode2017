@@ -10,7 +10,7 @@ namespace HashCode2017.Qualification.Classes
     {
 
 
-        public static void GenerateHeuristicSteps(List<Video> videos, List<CacheServer> cacheServers )
+        public static void GenerateHeuristicSteps(Video[] videos, CacheServer[] cacheServers )
         {
 
             //calculate Heuristik
@@ -20,9 +20,9 @@ namespace HashCode2017.Qualification.Classes
             //2 assign videos to optimal cache server  for every endpoint with full size and with reduced size(10%!?) to all other possible cache servers connected to this endpoint and ignore cahe server size for this step
 
 
-            for (int iVideo = 0; iVideo < videos.Count; iVideo++)
+            for (int iVideo = 0; iVideo < videos.Length; iVideo++)
             {
-                for (int iServer = 0; iServer < cacheServers.Count; iServer++)
+                for (int iServer = 0; iServer < cacheServers.Length; iServer++)
                 {
                     double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);
 
