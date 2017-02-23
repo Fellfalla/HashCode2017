@@ -30,8 +30,9 @@ namespace HashCode2017.Practice
 
         public static void ParseFileLines(string[] fileLines, 
             out List<Video> videos,
-            out List<Endpoint> endpoint,
-            out List<CacheServer> cacheServers
+            out List<Endpoint> endpoints,
+            out List<CacheServer> cacheServers,
+            out List<RequestDescription> requests
             )
         {
             int currentLine = 0;
@@ -61,7 +62,7 @@ namespace HashCode2017.Practice
 
             // ParseEndpoints and cache Servers
             cacheServers = new List<CacheServer>();
-            endpoint = new List<Endpoint>();
+            endpoints = new List<Endpoint>();
             for (int i = 0; i < endpointCount; i++)
             {
                 int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
@@ -90,9 +91,25 @@ namespace HashCode2017.Practice
                     newEndpoint.AddCacheConnection(cacheServer, cacheLatency);
                 }
 
-                endpoint.Add(newEndpoint);
+                endpoints.Add(newEndpoint);
+            }
 
 
+            // Parse Requests
+            requests = new List<RequestDescription>();
+            for (int i = 0; i < requestCount; i++)
+            {
+                int[] requestSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+                int videoId = requestSpecs[0];
+                int endpointId = requestSpecs[1];
+                int numberOfRequests = requestSpecs[2];
+
+                // find video
+                Video videoR = videos.First(video => video.Id == videoId);
+                Endpoint endpointR = endpoints.First(endpoint => endpoint.Id == endpointId);
+
+                var newRequest = new RequestDescription(videoR, endpointR, numberOfRequests);
+                requests.Add(newRequest);
             }
         }
 
