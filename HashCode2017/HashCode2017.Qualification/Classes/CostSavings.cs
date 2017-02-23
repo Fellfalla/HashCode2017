@@ -19,5 +19,17 @@ namespace HashCode2017.Qualification.Classes
 
             return result;
         }
+
+        public static double calculateCostSavingsHeuristic(Video v, CacheServer c)
+        {
+            double result = 0;
+
+            foreach (RequestDescription r in v.RequestsForThisVideo)
+            {
+                result += r.RequestAmount * (r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c)) / c.PercentUsed / v.Size;
+            }
+
+            return result;
+        }
     }
 }
