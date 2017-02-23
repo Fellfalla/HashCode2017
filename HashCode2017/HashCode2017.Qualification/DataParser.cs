@@ -65,10 +65,11 @@ namespace HashCode2017.Practice
             endpoints = new List<Endpoint>();
             for (int i = 0; i < endpointCount; i++)
             {
-                int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+                int endpointId = ++currentLine;
+                int[] endpointSpecs = fileLines[endpointId].Split(' ').Select(int.Parse).ToArray();
                 int endpointLatency = endpointSpecs[0];
                 int connectedCaches = endpointSpecs[1];
-                var newEndpoint = new Endpoint(endpointLatency);
+                var newEndpoint = new Endpoint(endpointId, endpointLatency);
 
                 for (int j = 0; j < connectedCaches; j++)
                 {

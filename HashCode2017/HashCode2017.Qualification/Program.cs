@@ -24,12 +24,17 @@ namespace HashCode2017.Qualification
             //Wir gehen davon aus dass wir nur die richtigen Zahlen eingeben.
             int input = int.Parse(s);
 
+
             List<Video> videos;
             List<Endpoint> endpoints;
             List<CacheServer> cacheServers;
             List<RequestDescription> requestsDescriptions;
             
+
+            Console.WriteLine("\n\nConstructing data");
+            //var pizza = Pizza.ConsumePizzaData(inData.ToArray(), new Progress<float>(ProgressHandler));
             DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
+            Console.WriteLine("\nParsing done.");
 
             //calculate Heuristik
 
@@ -50,5 +55,12 @@ namespace HashCode2017.Qualification
 
 
         }
+
+        
+        private static void ProgressHandler(float f)
+        {
+            Console.Write("\rProgress: {0} %\t\t", f * 100);
+        }
+
     }
 }
