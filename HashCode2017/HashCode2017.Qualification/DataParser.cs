@@ -30,7 +30,8 @@ namespace HashCode2017.Practice
 
         public static void ParseFileLines(string[] fileLines, 
             out List<Video> videos,
-            out List<Endpoint> endpoint
+            out List<Endpoint> endpoint,
+            out List<CacheServer> cacheServers
             )
         {
             int currentLine = 0;
@@ -58,12 +59,15 @@ namespace HashCode2017.Practice
             }
 
 
-            // ParseEndpoints
+            // ParseEndpoints and cache Servers
+            cacheServers = new List<CacheServer>();
+            endpoint = new List<Endpoint>();
             for (int i = 0; i < endpointCount; i++)
             {
                 int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
-                int latency = endpointSpecs[0];
+                int endpointLatency = endpointSpecs[0];
                 int connectedCaches = endpointSpecs[1];
+                var newEndpoint = new Endpoint(endpointLatency);
 
                 for (int j = 0; j < connectedCaches; j++)
                 {
@@ -71,10 +75,24 @@ namespace HashCode2017.Practice
                     int cacheId = cacheSpecs[0];
                     int cacheLatency = cacheSpecs[1];
 
-                    var newCacheServer = new CacheServer(cacheId);
+                    CacheServer cacheServer = null;
+                    if (cacheServers.All(server => server.Id != cacheId))
+                    {
+                        // add Missing cacheServer
+                        var newCacheServer = new CacheServer(cacheId);
+                        cacheServers.Add(newCacheServer);
+                    }
+                    else
+                    {
+                        cacheServer = cacheServers.First(server => server.Id == cacheId);
+                    }
+
+                    newEndpoint.AddCacheConnection(cacheServer, cacheLatency);
                 }
 
-                var newEndpoint = new Endpoint(latency);
+                endpoint.Add(newEndpoint);
+
+
             }
         }
 

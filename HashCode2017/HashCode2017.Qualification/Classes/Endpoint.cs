@@ -14,15 +14,24 @@ namespace HashCode2017.Qualification.Classes
 
         private List<CacheConnection> _cacheConnections;
 
-        public Endpoint(int latencyToDataCenter, List<CacheConnection> cacheConnections)
+        public Endpoint(int latencyToDataCenter)
         {
             _latencyToDataCenter = latencyToDataCenter;
-            _cacheConnections = cacheConnections;
+            _cacheConnections = new List<CacheConnection>();
+        }
+
+        public void AddCacheConnection(CacheServer server, int latency)
+        {
+            var connection = new CacheConnection();
+            connection.latency = latency;
+            connection.server = server;
+
+            CacheConnections.Add(connection);
         }
 
         public struct CacheConnection
         {
-            public int id;
+            public CacheServer server;
             public int latency;
         }
 
