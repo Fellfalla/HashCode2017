@@ -44,7 +44,8 @@ namespace HashCode2017.Qualification.Classes
         
         public static void InsertToList(Item item)
         {
-            for (int index = 0; index < CostList.Count; index++)
+            int count = CostList.Count;
+            for (int index = 0; index < count; index++)
             {
                 Item element = CostList[index];
                 if (item.HeuristicCosts < element.HeuristicCosts)
