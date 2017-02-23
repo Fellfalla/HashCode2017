@@ -25,9 +25,11 @@ namespace HashCode2017.Qualification.Classes
                 if (item.HeuristicCosts < element.HeuristicCosts)
                 {
                     CostList.Insert(index, item);
-                    break;
+                    return;
                 }
             }
+
+            CostList.Add(item);
         }
 
     }
