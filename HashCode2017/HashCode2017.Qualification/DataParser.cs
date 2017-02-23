@@ -20,7 +20,7 @@ namespace HashCode2017.Practice
                     case ProblemSettings.trending_today:
                         return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.trending_today.in", assembly);
                     case ProblemSettings.video_worth_spreading:
-                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.video_worth_spreading.in", assembly);
+                        return EmbeddedResourceReader.ReadStrings("HashCode2017.Qualification.Resources.videos_worth_spreading.in", assembly);
                 default:
                     throw new ArgumentException();
             }
