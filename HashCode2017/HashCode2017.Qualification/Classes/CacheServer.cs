@@ -9,10 +9,10 @@ namespace HashCode2017.Qualification.Classes
     public class CacheServer
     {
         //Real videos that are stored on this cache
-        private List<Video> _videos;
+        private List<Video> _videos = new List<Video>();
 
         //Potential videos that can be stored on this cache
-        private List<Video> _tempVideos;
+        private List<Video> _tempVideos = new List<Video>();
 
         private const int MAXSIZE = 500000;
 
