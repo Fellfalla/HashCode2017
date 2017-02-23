@@ -129,30 +129,23 @@ namespace HashCode2017.Qualification
 
             int curVideo = 0;
 
-            for (int i = 0; i < servers.Length; i++)
+            foreach (var requestDescription in requests)
             {
-                while (servers[i].PercentUsed < 1)
+                foreach (var connection in requestDescription.Endpoint.CacheConnections.Where(connection => connection.server.PercentUsed < 1))
                 {
-                    if (curVideo >= videos.Length)
+                    connection.server.TempVideos.Add(requestDescription.Video);
+                    connection.server.CalculatePercentUsed();
+                    if (connection.server.PercentUsed < 1)
                     {
-                        return;
+                        break;
                     }
-
                     else
                     {
-                        var addedVideo = videos[curVideo++];
-                        servers[i].TempVideos.Add(addedVideo);
-
-                        servers[i].CalculatePercentUsed();
-
-                        if (servers[i].PercentUsed > 1)
-                        {
-                            servers[i].TempVideos.Remove(addedVideo);
-                            break;
-                        }
+                        
                     }
                 }
             }
+
         }
 
         
