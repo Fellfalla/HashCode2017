@@ -37,7 +37,7 @@ namespace HashCode2017.Qualification.Classes
             set { _tempVideos = value; }
         }
 
-        public void CalculateFreeSpacePercent()
+        public void CalculatePercentUsed()
         {
             int spaceUsed = 0;
             foreach (Video vid in _tempVideos)
