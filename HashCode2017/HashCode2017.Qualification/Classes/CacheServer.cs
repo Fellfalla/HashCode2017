@@ -22,5 +22,16 @@ namespace HashCode2017.Qualification.Classes
             get { return _videos; }
             set { _videos = value; }
         }
+
+        public int GetFreeSpacePercent()
+        {
+            int space = 0;
+            foreach (Video vid in _videos)
+            {
+                
+            }
+
+            return space;
+        }
     }
 }
