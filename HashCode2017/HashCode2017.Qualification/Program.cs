@@ -47,7 +47,10 @@ namespace HashCode2017.Qualification
             List<CacheServer> cacheServers;
             List<RequestDescription> requestsDescriptions;
             
-            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
+            var progress = new Progress<float>(ProgressHandler);
+
+            DataParser.ParseFileLines
+                (DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions, progress);
 
             //calculate Heuristik
 
@@ -67,6 +70,12 @@ namespace HashCode2017.Qualification
 
 
 
+        }
+
+        
+        private static void ProgressHandler(float f)
+        {
+            Console.Write("\rProgress: {0} %\t\t", f * 100);
         }
         
     }
