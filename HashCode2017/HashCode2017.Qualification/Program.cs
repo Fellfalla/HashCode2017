@@ -59,6 +59,7 @@ namespace HashCode2017.Qualification
             DataParser.ParseFileLines
                 (DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions, progress);
 
+            CalculateVideoRequests(videos, requestsDescriptions);
             //calculate Heuristik
 
             GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers, progress);
@@ -73,6 +74,21 @@ namespace HashCode2017.Qualification
             Assigner.Assign();
 
             return GetOutput(cacheServers);
+        }
+
+        private static void CalculateVideoRequests(Video[] videos, RequestDescription[] requestsDescriptions)
+        {
+            foreach (Video video in videos)
+            {
+                foreach (RequestDescription request in requestsDescriptions)
+                {
+                    if (request.Video.Id == video.Id)
+                    {
+                        video.RequestsForThisVideo.Add(request);
+                    }
+                }
+
+            }   
         }
 
         private static string[] GetOutput(CacheServer[] cacheServers)
