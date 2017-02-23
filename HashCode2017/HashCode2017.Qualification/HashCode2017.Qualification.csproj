@@ -52,6 +52,7 @@
     <EmbeddedResource Include="Resources\me_at_the_zoo.in" />
     <EmbeddedResource Include="Resources\trending_today.in" />
     <EmbeddedResource Include="Resources\videos_worth_spreading.in" />
+    <None Include="hashcode2017_streaming_videos.pdf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
