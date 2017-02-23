@@ -43,6 +43,8 @@ namespace HashCode2017.Qualification
                 // solve all input files
 
             }
+
+            Console.WriteLine("Done?");
         }
 
         public static string[] EvaluateData(DataParser.ProblemSettings mode)
