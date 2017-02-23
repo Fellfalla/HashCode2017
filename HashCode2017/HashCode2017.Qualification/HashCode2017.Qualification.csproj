@@ -46,6 +46,8 @@
     <Compile Include="Classes\CacheServer.cs" />
     <Compile Include="Classes\CostSavings.cs" />
     <Compile Include="Classes\Endpoint.cs" />
+    <Compile Include="Classes\GenerateHeuristic.cs" />
+    <Compile Include="Classes\GreedyAssign.cs" />
     <Compile Include="Classes\RequestDescription.cs" />
     <Compile Include="Classes\Video.cs" />
     <Compile Include="DataParser.cs" />

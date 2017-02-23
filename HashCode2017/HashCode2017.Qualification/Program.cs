@@ -54,13 +54,8 @@ namespace HashCode2017.Qualification
 
             //calculate Heuristik
 
-                //1 calculate cost savings for all combinations video zu cacheserver
-
-                //2 assign videos to optimal cache server  for every endpoint with full size and with reduced size(10%!?) to all other possible cache servers connected to this endpoint and ignore cahe server size for this step
-
-                //3 calculate used_space/avilable_space for every chache server
-                
-
+            GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
+            
             //start greedy assigning
 
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)
@@ -78,22 +73,5 @@ namespace HashCode2017.Qualification
             Console.Write("\rProgress: {0} %\t\t", f * 100);
         }
         
-        public void GreedyServerAssignUnlimitedSpace(List<Video> videos, List<CacheServer> cacheServers)
-        {
-            for (int iVideo = 0; iVideo < videos.Count; iVideo++)
-            {
-                for (int iServer = 0; iServer < cacheServers.Count; iServer++)
-                {
-                    double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);
-
-                    if (temp > 0)
-                    {
-                        cacheServers[iServer].TempVideos.Add(videos[iVideo]);
-                    }
-                    
-                }
-            }
-        }
-
     }
 }
