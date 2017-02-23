@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Classes\CacheServer.cs" />
     <Compile Include="Classes\Endpoint.cs" />
+    <Compile Include="Classes\RequestDescription.cs" />
     <Compile Include="Classes\Video.cs" />
     <Compile Include="DataParser.cs" />
     <Compile Include="Program.cs" />
