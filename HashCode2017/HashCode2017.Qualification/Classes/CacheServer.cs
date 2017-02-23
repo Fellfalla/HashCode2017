@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HashCode2017.Qualification.Classes
 {
-    public class Video
+    public class CacheServer
     {
-        private uint _size;
+        private List<Video> _videos;
 
-        public Video(uint size)
+        public CacheServer(List<Video> videos)
         {
-            _size = size;
+            _videos = videos;
         }
     }
 }

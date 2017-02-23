@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashCode2017.Qualification.Classes
 {
-    class Endpoint
+    public class Endpoint
     {
         private int _latencyToDataCenter;
 
