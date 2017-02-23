@@ -20,11 +20,12 @@ namespace HashCode2017.Qualification.Classes
             _cacheConnections = new List<CacheConnection>();
         }
 
-        public void AddCacheConnection(CacheServer server, int latency)
+        public void AddCacheConnection(CacheServer server, int latency, int id)
         {
             var connection = new CacheConnection();
             connection.latency = latency;
             connection.server = server;
+            Id = id;
 
             CacheConnections.Add(connection);
         }
