@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CacheServer.cs" />
+    <Compile Include="Classes\Assigner.cs" />
     <Compile Include="Classes\CostSavings.cs" />
     <Compile Include="Classes\Endpoint.cs" />
     <Compile Include="Classes\GenerateHeuristic.cs" />
