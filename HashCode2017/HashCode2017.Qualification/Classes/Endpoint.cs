@@ -10,6 +10,8 @@ namespace HashCode2017.Qualification.Classes
     {
         private int _latencyToDataCenter;
 
+        private int _id;
+
         private List<CacheConnection> _cacheConnections;
 
         public Endpoint(int latencyToDataCenter, List<CacheConnection> cacheConnections)
@@ -35,6 +37,19 @@ namespace HashCode2017.Qualification.Classes
         {
             get { return _cacheConnections; }
             set { _cacheConnections = value; }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+
+            set
+            {
+                _id = value;
+            }
         }
     }
 }
