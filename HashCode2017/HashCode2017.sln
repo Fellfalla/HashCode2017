@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode2017.Practice.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode2017", "HashCode2017\HashCode2017.csproj", "{6FA2937C-CC44-4248-A9CD-6AC535CAE791}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashCode2017.Qualification", "HashCode2017.Qualification\HashCode2017.Qualification.csproj", "{0C66633E-0D9D-4A15-9106-D03D5D7D6668}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6FA2937C-CC44-4248-A9CD-6AC535CAE791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA2937C-CC44-4248-A9CD-6AC535CAE791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA2937C-CC44-4248-A9CD-6AC535CAE791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C66633E-0D9D-4A15-9106-D03D5D7D6668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C66633E-0D9D-4A15-9106-D03D5D7D6668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C66633E-0D9D-4A15-9106-D03D5D7D6668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C66633E-0D9D-4A15-9106-D03D5D7D6668}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
