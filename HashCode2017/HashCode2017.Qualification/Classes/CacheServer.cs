@@ -16,6 +16,8 @@ namespace HashCode2017.Qualification.Classes
 
         private const int MAXSIZE = 500000;
 
+        private int occupied = 0;
+
         public float PercentUsed = 0;
 
         public CacheServer(int id)
@@ -41,6 +43,15 @@ namespace HashCode2017.Qualification.Classes
         {
             get { return _id; }
             set { _id = value; }
+        }
+
+        public void PutVideo(Video video)
+        {
+            if (occupied + video.Size < MAXSIZE)
+            {
+                occupied += video.Size;
+                Videos.Add(video);
+            }
         }
 
         public void CalculatePercentUsed()
