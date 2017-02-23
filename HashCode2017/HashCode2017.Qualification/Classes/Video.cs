@@ -8,11 +8,13 @@ namespace HashCode2017.Qualification.Classes
 {
     public class Video
     {
-        private uint _size;
+        private int _size;
+        private int _id;
 
-        public Video(uint size)
+        public Video(int size, int id)
         {
             _size = size;
+            _id = id;
         }
     }
 }
