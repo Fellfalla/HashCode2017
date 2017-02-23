@@ -65,8 +65,8 @@ namespace HashCode2017.Qualification.Classes
         public int GetLatencyToCache(CacheServer cache)
         {
             int latency = LatencyToDataCenter;
-
-            for (int index = 0; index < _cacheConnections.Count; index++)
+            int count = _cacheConnections.Count;
+            for (int index = 0; index < count; index++)
             {
                 CacheConnection connection = _cacheConnections[index];
                 if (connection.server.Id == cache.Id)
