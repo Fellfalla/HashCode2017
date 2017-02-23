@@ -14,5 +14,11 @@ namespace HashCode2017.Qualification.Classes
         {
             _videos = videos;
         }
+
+        public List<Video> Videos
+        {
+            get { return _videos; }
+            set { _videos = value; }
+        }
     }
 }

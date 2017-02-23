@@ -25,5 +25,16 @@ namespace HashCode2017.Qualification.Classes
         }
 
 
+        public int LatencyToDataCenter
+        {
+            get { return _latencyToDataCenter; }
+            set { _latencyToDataCenter = value; }
+        }
+
+        public List<CacheConnection> CacheConnections
+        {
+            get { return _cacheConnections; }
+            set { _cacheConnections = value; }
+        }
     }
 }
