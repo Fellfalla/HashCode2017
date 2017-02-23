@@ -55,14 +55,7 @@ namespace HashCode2017.Qualification
             //calculate Heuristik
 
             GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers);
-
-                //1 calculate cost savings for all combinations video zu cacheserver
-
-                //2 assign videos to optimal cache server  for every endpoint with full size and with reduced size(10%!?) to all other possible cache servers connected to this endpoint and ignore cahe server size for this step
-
-                //3 calculate used_space/avilable_space for every chache server
-                
-
+            
             //start greedy assigning
 
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)
