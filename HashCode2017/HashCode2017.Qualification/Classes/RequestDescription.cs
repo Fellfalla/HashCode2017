@@ -8,27 +8,27 @@ namespace HashCode2017.Qualification.Classes
 {
     public class RequestDescription
     {
-        private Video _videoId;
-        private Endpoint _endpointId;
+        private Video _video;
+        private Endpoint _endpoint;
         private int _requestAmount;
 
-        public RequestDescription(Video videoId, Endpoint endpointId, int requestAmount)
+        public RequestDescription(Video video, Endpoint endpoint, int requestAmount)
         {
-            _videoId = videoId;
-            _endpointId = endpointId;
+            _video = video;
+            _endpoint = endpoint;
             _requestAmount = requestAmount;
         }
 
-        public Video VideoId
+        public Video Video
         {
-            get { return _videoId; }
-            set { _videoId = value; }
+            get { return _video; }
+            set { _video = value; }
         }
 
-        public Endpoint EndpointId
+        public Endpoint Endpoint
         {
-            get { return _endpointId; }
-            set { _endpointId = value; }
+            get { return _endpoint; }
+            set { _endpoint = value; }
         }
 
         public int RequestAmount
