@@ -23,8 +23,8 @@ namespace HashCode2017.Qualification.Classes
             Id = id;
         }
 
-        public int Id { get;set; }
-
+        public int _id;
+        
         public List<Video> Videos
         {
             get { return _videos; }
@@ -35,6 +35,12 @@ namespace HashCode2017.Qualification.Classes
         {
             get { return _tempVideos; }
             set { _tempVideos = value; }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         public void CalculatePercentUsed()
