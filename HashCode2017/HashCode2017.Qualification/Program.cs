@@ -17,12 +17,34 @@ namespace HashCode2017.Qualification
             Console.WriteLine("1 = me_at_the_zoo");
             Console.WriteLine("2 = trending_today");
             Console.WriteLine("3 = videos_worth_spreading");
+            Console.WriteLine("a = ALL");
+
             String s;
              s = Console.ReadLine();
             Console.WriteLine("Input " + s);
 
             //Wir gehen davon aus dass wir nur die richtigen Zahlen eingeben.
-            int input = int.Parse(s);
+            int input;
+            if (int.TryParse(s, out  input))
+            {   
+                // user has type 0 1 2 or 3
+                EvaluateData((DataParser.ProblemSettings) input);
+            }
+            else
+            {
+                foreach (var mode in Enum.GetNames(typeof(DataParser.ProblemSettings)))
+                {
+                    var modeEnum = (DataParser.ProblemSettings) Enum.Parse(typeof(DataParser.ProblemSettings), mode);
+                    EvaluateData(modeEnum);
+                }
+                // solve all input files
+
+            }
+        }
+
+        public static void EvaluateData(DataParser.ProblemSettings mode)
+        {
+
 
 
             List<Video> videos;
@@ -33,7 +55,7 @@ namespace HashCode2017.Qualification
 
             Console.WriteLine("\n\nConstructing data");
             //var pizza = Pizza.ConsumePizzaData(inData.ToArray(), new Progress<float>(ProgressHandler));
-            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
+            DataParser.ParseFileLines(DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
             Console.WriteLine("\nParsing done.");
 
             //calculate Heuristik
@@ -50,8 +72,6 @@ namespace HashCode2017.Qualification
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)
 
                 //2 while still space on any cache server: find biggest entry in M and assign V to C --> then set enty to 0. As soon as any cacheserver is full: delete column in M
-
-
 
 
         }
