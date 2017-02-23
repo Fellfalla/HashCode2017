@@ -63,9 +63,16 @@ namespace HashCode2017.Practice
             {
                 int[] endpointSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
                 int latency = endpointSpecs[0];
-                int cacheserverCount = endpointSpecs[1];
+                int connectedCaches = endpointSpecs[1];
 
+                for (int j = 0; j < connectedCaches; j++)
+                {
+                    int[] cacheSpecs = fileLines[++currentLine].Split(' ').Select(int.Parse).ToArray();
+                    int cacheId = cacheSpecs[0];
+                    int cacheLatency = cacheSpecs[1];
 
+                    var newCacheServer = new CacheServer(cacheId);
+                }
 
                 var newEndpoint = new Endpoint(latency);
             }
