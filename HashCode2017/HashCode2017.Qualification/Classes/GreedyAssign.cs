@@ -19,10 +19,17 @@ namespace HashCode2017.Qualification.Classes
 
         public void InsertToList(Item item)
         {
-            foreach (Item element in CostList)
+            for (int index = 0; index < CostList.Count; index++)
             {
-                
+                Item element = CostList[index];
+                if (item.HeuristicCosts < element.HeuristicCosts)
+                {
+                    CostList.Insert(index, item);
+                    return;
+                }
             }
+
+            CostList.Add(item);
         }
 
     }
