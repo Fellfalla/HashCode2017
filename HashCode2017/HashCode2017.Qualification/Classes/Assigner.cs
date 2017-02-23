@@ -10,11 +10,11 @@ namespace HashCode2017.Qualification.Classes
     {
         public static void Assign()
         {
-            foreach (var item in GreedyAssign.CostList)
+            for (int index = 0; index < GreedyAssign.CostList.Count; index++)
             {
+                var item = GreedyAssign.CostList[index];
                 item.Cache.PutVideo(item.Video);
             }
-
         }
     }
 }

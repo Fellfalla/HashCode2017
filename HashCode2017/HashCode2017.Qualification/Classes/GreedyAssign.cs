@@ -21,24 +21,25 @@ namespace HashCode2017.Qualification.Classes
         {
             float value;
             int counter = 0;
-            foreach (var video in videos)
+            for (int index = 0; index < videos.Length; index++)
             {
+                var video = videos[index];
                 progress.Report(counter++/(float) videos.Length);
-                foreach (var cacheServer in cacheServers)
+                for (int i = 0; i < cacheServers.Length; i++)
                 {
-                    //listItem = CalculateHeuristicForOneItem(video, cacheServer);
-                    value = (float)CostSavings.calculateCostSavingsHeuristic(video, cacheServer);
+                    var cacheServer = cacheServers[i];
+//listItem = CalculateHeuristicForOneItem(video, cacheServer);
+                    value = (float) CostSavings.calculateCostSavingsHeuristic(video, cacheServer);
                     Item item = new Item()
                     {
                         Video = video,
                         Cache = cacheServer,
                         HeuristicCosts = value
                     };
-                   
+
                     InsertToList(item);
                 }
             }
-            
         }
 
         

@@ -12,9 +12,10 @@ namespace HashCode2017.Qualification.Classes
         {
             double result = 0;
 
-            foreach(RequestDescription r in v.RequestsForThisVideo)
+            for (int index = 0; index < v.RequestsForThisVideo.Count; index++)
             {
-                result += r.RequestAmount * (r.Endpoint.LatencyToDataCenter-r.Endpoint.GetLatencyToCache(c));
+                RequestDescription r = v.RequestsForThisVideo[index];
+                result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c));
             }
 
             return result;
@@ -24,9 +25,11 @@ namespace HashCode2017.Qualification.Classes
         {
             double result = 0;
 
-            foreach (RequestDescription r in v.RequestsForThisVideo)
+            for (int index = 0; index < v.RequestsForThisVideo.Count; index++)
             {
-                result += r.RequestAmount * (r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c)) / c.PercentUsed / v.Size;
+                RequestDescription r = v.RequestsForThisVideo[index];
+                result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c))/
+                          c.PercentUsed/v.Size;
             }
 
             return result;
