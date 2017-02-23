@@ -17,50 +17,23 @@ namespace HashCode2017.Qualification
             Console.WriteLine("1 = me_at_the_zoo");
             Console.WriteLine("2 = trending_today");
             Console.WriteLine("3 = videos_worth_spreading");
-            Console.WriteLine("a = ALL");
-
             String s;
              s = Console.ReadLine();
             Console.WriteLine("Input " + s);
 
             //Wir gehen davon aus dass wir nur die richtigen Zahlen eingeben.
-            int input;
-            if (int.TryParse(s, out  input))
-            {   
-                // user has type 0 1 2 or 3
-                EvaluateData((DataParser.ProblemSettings) input);
-            }
-            else
-            {
-                foreach (var mode in Enum.GetNames(typeof(DataParser.ProblemSettings)))
-                {
-                    var modeEnum = (DataParser.ProblemSettings) Enum.Parse(typeof(DataParser.ProblemSettings), mode);
-                    EvaluateData(modeEnum);
-                }
-                // solve all input files
-
-            }
-        }
-
-        public static void EvaluateData(DataParser.ProblemSettings mode)
-        {
-
-
+            int input = int.Parse(s);
 
             List<Video> videos;
             List<Endpoint> endpoints;
             List<CacheServer> cacheServers;
             List<RequestDescription> requestsDescriptions;
             
-
-            Console.WriteLine("\n\nConstructing data");
-            //var pizza = Pizza.ConsumePizzaData(inData.ToArray(), new Progress<float>(ProgressHandler));
-            DataParser.ParseFileLines(DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
-            Console.WriteLine("\nParsing done.");
+            DataParser.ParseFileLines(DataParser.ReadFile((DataParser.ProblemSettings) input).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions);
 
             //calculate Heuristik
 
-                //1 calculate cost savings for all requests
+                //1 calculate cost savings for all combinations video zu cacheserver
 
                 //2 assign videos to optimal cache server  for every endpoint with full size and with reduced size(10%!?) to all other possible cache servers connected to this endpoint and ignore cahe server size for this step
 
@@ -74,12 +47,25 @@ namespace HashCode2017.Qualification
                 //2 while still space on any cache server: find biggest entry in M and assign V to C --> then set enty to 0. As soon as any cacheserver is full: delete column in M
 
 
-        }
 
+
+        }
         
-        private static void ProgressHandler(float f)
+        public void GreedyServerAssignUnlimitedSpace(List<Video> videos, List<CacheServer> cacheServers)
         {
-            Console.Write("\rProgress: {0} %\t\t", f * 100);
+            for (int iVideo = 0; iVideo < videos.Count; iVideo++)
+            {
+                for (int iServer = 0; iServer < cacheServers.Count; iServer++)
+                {
+                    double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);
+
+                    if (temp > 0)
+                    {
+                        cacheServers[iServer].TempVideos.Add(videos[iVideo]);
+                    }
+                    
+                }
+            }
         }
 
     }
