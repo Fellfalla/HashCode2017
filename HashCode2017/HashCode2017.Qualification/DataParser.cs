@@ -32,9 +32,11 @@ namespace HashCode2017.Practice
             out List<Video> videos,
             out List<Endpoint> endpoints,
             out List<CacheServer> cacheServers,
-            out List<RequestDescription> requests
+            out List<RequestDescription> requests,
+            IProgress<float> progress 
             )
         {
+            progress.Report(0);
             int currentLine = 0;
             int[] specs = fileLines[currentLine].Split(' ').Select(int.Parse).ToArray();
 
@@ -112,6 +114,8 @@ namespace HashCode2017.Practice
                 var newRequest = new RequestDescription(videoR, endpointR, numberOfRequests);
                 requests.Add(newRequest);
             }
+
+            progress.Report(1);
         }
 
 

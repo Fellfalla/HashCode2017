@@ -44,9 +44,6 @@ namespace HashCode2017.Qualification
 
         public static void EvaluateData(DataParser.ProblemSettings mode)
         {
-
-
-
             List<Video> videos;
             List<Endpoint> endpoints;
             List<CacheServer> cacheServers;
