@@ -52,10 +52,12 @@ namespace HashCode2017.Practice
             int cachecapacity = specs[4];
 
             // init Arrays
-            cacheServers = new CacheServer[cachecapacity];
+            cacheServers = new CacheServer[cachServerCount];
             videos = new Video[videoCount];
             endpoints = new Endpoint[endpointCount];
             requests = new RequestDescription[requestCount];
+            CacheServer.MAXSIZE = cachecapacity;
+
             for (int i = 0; i < cachServerCount; i++)
             {
                 cacheServers[i] = new CacheServer(i);

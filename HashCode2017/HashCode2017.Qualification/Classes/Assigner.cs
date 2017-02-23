@@ -12,7 +12,7 @@ namespace HashCode2017.Qualification.Classes
         {
             foreach (var item in GreedyAssign.CostList)
             {
-                item.Cache.PutVideo(item.Video);
+                //item.Cache.PutVideo(item.Video);
             }
 
         }

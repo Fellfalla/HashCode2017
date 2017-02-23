@@ -17,7 +17,7 @@ namespace HashCode2017.Qualification.Classes
             public float HeuristicCosts;
         }
 
-        public static void GenerateHeuristicCosts(List<Video> videos, List<CacheServer> cacheServers)
+        public static void GenerateHeuristicCosts(Video[] videos, CacheServer[] cacheServers)
         {
             float value;
 
