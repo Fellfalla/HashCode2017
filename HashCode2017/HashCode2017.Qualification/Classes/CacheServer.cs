@@ -16,6 +16,8 @@ namespace HashCode2017.Qualification.Classes
 
         private const int MAXSIZE = 500000;
 
+        public float PercentUsed = 0;
+
         public CacheServer(int id)
         {
             _videos = new List<Video>();
@@ -35,7 +37,7 @@ namespace HashCode2017.Qualification.Classes
             set { _tempVideos = value; }
         }
 
-        public float GetFreeSpacePercent()
+        public void CalculatePercentUsed()
         {
             int spaceUsed = 0;
             foreach (Video vid in _tempVideos)
@@ -43,7 +45,7 @@ namespace HashCode2017.Qualification.Classes
                 spaceUsed += vid.Size;
             }
 
-            return (float)spaceUsed/MAXSIZE;
+            PercentUsed = (float)spaceUsed/MAXSIZE;
         }
     }
 }
