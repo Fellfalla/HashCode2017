@@ -20,7 +20,7 @@ namespace HashCode2017.Qualification.Classes
 
         public CacheServer(int id)
         {
-            _videos = new List<Video>();
+            Id = id;
         }
 
         public int Id { get;set; }
