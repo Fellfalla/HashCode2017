@@ -17,24 +17,23 @@ namespace HashCode2017.Qualification.Classes
             _video = video;
             _endpoint = endpoint;
             _requestAmount = requestAmount;
+
+            video.RequestsForThisVideo.Add(this);
         }
 
         public Video Video
         {
             get { return _video; }
-            set { _video = value; }
         }
 
         public Endpoint Endpoint
         {
             get { return _endpoint; }
-            set { _endpoint = value; }
         }
 
         public int RequestAmount
         {
             get { return _requestAmount; }
-            set { _requestAmount = value; }
         }
     }
 }

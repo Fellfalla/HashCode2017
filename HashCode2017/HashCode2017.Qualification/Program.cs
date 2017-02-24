@@ -55,41 +55,30 @@ namespace HashCode2017.Qualification
             RequestDescription[] requestsDescriptions;
             
             var progress = new Progress<float>(ProgressHandler);
-
+            Console.WriteLine("\nParsing Files...\n");
             DataParser.ParseFileLines
                 (DataParser.ReadFile(mode).ToArray(), out videos, out endpoints, out cacheServers, out requestsDescriptions, progress);
+            Console.WriteLine("\ndone");
 
-            CalculateVideoRequests(videos, requestsDescriptions);
             //calculate Heuristik
-
+            Console.WriteLine("\nCalculate heuristics...\n");
             GenerateHeuristic.GenerateHeuristicSteps(videos, cacheServers, progress);
+            Console.WriteLine("\ndone");
             
             //start greedy assigning
 
                 //1 claculate matrix M VxC with every element beeing: sum_over_all_endpoints(benefit / cacheserver_heuristik / video_size)
 
+            Console.WriteLine("\nCalculate costs...\n");
             GreedyAssign.GenerateHeuristicCosts(videos, cacheServers, progress);
+            Console.WriteLine("\ndone");
+
             //2 while still space on any cache server: find biggest entry in M and assign V to C --> then set enty to 0. As soon as any cacheserver is full: delete column in M
 
+            Console.WriteLine("\nAssign\n");
             Assigner.Assign();
 
             return GetOutput(cacheServers);
-        }
-
-        private static void CalculateVideoRequests(Video[] videos, RequestDescription[] requestsDescriptions)
-        {
-            for (int i = 0; i < videos.Length; i++)
-            {
-                Video video = videos[i];
-                for (int index = 0; index < requestsDescriptions.Length; index++)
-                {
-                    RequestDescription request = requestsDescriptions[index];
-                    if (request.Video.Id == video.Id)
-                    {
-                        video.RequestsForThisVideo.Add(request);
-                    }
-                }
-            }
         }
 
         private static string[] GetOutput(CacheServer[] cacheServers)

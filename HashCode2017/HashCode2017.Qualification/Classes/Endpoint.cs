@@ -26,9 +26,11 @@ namespace HashCode2017.Qualification.Classes
             var connection = new CacheConnection();
             connection.latency = latency;
             connection.server = server;
-
+            ServerLatencies.Add(server, latency);
             CacheConnections.Add(connection);
         }
+
+        public Dictionary<CacheServer, int> ServerLatencies = new Dictionary<CacheServer, int>();
 
         public struct CacheConnection
         {
@@ -64,19 +66,12 @@ namespace HashCode2017.Qualification.Classes
 
         public int GetLatencyToCache(CacheServer cache)
         {
-            int latency = LatencyToDataCenter;
-
-            for (int index = 0; index < _cacheConnections.Count; index++)
+            int latency;
+            if (!ServerLatencies.TryGetValue(cache, out latency))
             {
-                CacheConnection connection = _cacheConnections[index];
-                if (connection.server.Id == cache.Id)
-                {
-                    return connection.latency;
-                }
+                latency = LatencyToDataCenter;
             }
-
             return latency;
-
         }
     }
 }
