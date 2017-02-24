@@ -22,7 +22,7 @@ namespace HashCode2017.Qualification.Classes
 
             for (int iVideo = 0; iVideo < videos.Length; iVideo++)
             {
-                progress.Report(iVideo/(float) videos.Length);
+                //progress.Report(iVideo/(float) videos.Length);
                 for (int iServer = 0; iServer < cacheServers.Length; iServer++)
                 {
                     double temp = CostSavings.calculateCostSavings(videos[iVideo], cacheServers[iServer]);

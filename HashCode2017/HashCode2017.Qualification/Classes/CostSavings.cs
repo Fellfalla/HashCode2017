@@ -25,7 +25,8 @@ namespace HashCode2017.Qualification.Classes
         {
             double result = 0;
 
-            for (int index = 0; index < v.RequestsForThisVideo.Count; index++)
+            int count = v.RequestsForThisVideo.Count;
+            for (int index = 0; index < count; index++)
             {
                 RequestDescription r = v.RequestsForThisVideo[index];
                 //result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c))/

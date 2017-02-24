@@ -81,6 +81,23 @@ namespace HashCode2017.Qualification
             return GetOutput(cacheServers);
         }
 
+        private static void CalculateVideoRequests(Video[] videos, RequestDescription[] requestsDescriptions)
+        {
+            for (int i = 0; i < videos.Length; i++)
+            {
+                Video video = videos[i];
+                int count = requestsDescriptions.Length;
+                for (int index = 0; index < count; index++)
+                {
+                    RequestDescription request = requestsDescriptions[index];
+                    if (request.Video.Id == video.Id)
+                    {
+                        video.RequestsForThisVideo.Add(request);
+                    }
+                }
+            }
+        }
+
         private static string[] GetOutput(CacheServer[] cacheServers)
         {
             
