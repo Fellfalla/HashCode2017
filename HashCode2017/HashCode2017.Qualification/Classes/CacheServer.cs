@@ -9,10 +9,12 @@ namespace HashCode2017.Qualification.Classes
     public class CacheServer
     {
         //Real videos that are stored on this cache
-        private List<Video> _videos = new List<Video>();
+        public List<Video> Videos = new List<Video>();
 
         //Potential videos that can be stored on this cache
-        private List<Video> _tempVideos = new List<Video>();
+        public List<Video> TempVideos = new List<Video>();
+
+        public List<Tuple<float, Video>> CostList = new List<Tuple<float, Video>>();
 
         public static int MAXSIZE;
 
@@ -26,24 +28,10 @@ namespace HashCode2017.Qualification.Classes
         }
 
         public int _id;
-        
-        public List<Video> Videos
-        {
-            get { return _videos; }
-            set { _videos = value; }
-        }
 
-        public List<Video> TempVideos
-        {
-            get { return _tempVideos; }
-            set { _tempVideos = value; }
-        }
 
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+
+        public int Id;
 
         public void PutVideo(Video video)
         {
@@ -57,7 +45,7 @@ namespace HashCode2017.Qualification.Classes
         public void CalculatePercentUsed()
         {
             int spaceUsed = 0;
-            foreach (Video vid in _tempVideos)
+            foreach (Video vid in TempVideos)
             {
                 spaceUsed += vid.Size;
             }

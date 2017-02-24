@@ -28,8 +28,10 @@ namespace HashCode2017.Qualification.Classes
             for (int index = 0; index < v.RequestsForThisVideo.Count; index++)
             {
                 RequestDescription r = v.RequestsForThisVideo[index];
-                result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c))/
-                          c.PercentUsed/v.Size;
+                //result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c))/
+                //          c.PercentUsed/v.Size;
+                result += r.RequestAmount*(r.Endpoint.LatencyToDataCenter - r.Endpoint.GetLatencyToCache(c)) -
+                          c.PercentUsed * v.Size;
             }
 
             return result;

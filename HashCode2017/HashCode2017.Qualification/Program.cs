@@ -76,7 +76,7 @@ namespace HashCode2017.Qualification
             //2 while still space on any cache server: find biggest entry in M and assign V to C --> then set enty to 0. As soon as any cacheserver is full: delete column in M
 
             Console.WriteLine("\nAssign\n");
-            Assigner.Assign();
+            Assigner.Assign(cacheServers);
 
             return GetOutput(cacheServers);
         }
